@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+  <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: black;
+      }
+      img {
+        object-fit: contain;
+        width:100%;
+        height:100%;
+        position: absolute;
+        transition: opacity 2s ease-in-out;
+      }
+      #two{
+        opacity: 0;
+      }
+  </style>
+</head>
+<body>
+    <div>
+        <img id=one src='https://source.unsplash.com/3840x2160'>
+        <img id=two src=''>
+    </div>
+    <script>
+      time = 50*60*1000;
+
+      one = document.getElementById("one");
+      two = document.getElementById("two");
+
+      function load_one(){
+        console.log('one');
+        one.src = 'https://source.unsplash.com/random/3840x2160?r='+ rand();
+        setTimeout(load_two,time)
+      }
+
+      function load_two(){
+        console.log('two');
+        two.src = 'https://source.unsplash.com/random/3840x2160?r='+ rand();
+        setTimeout(load_one,time)
+      }
+
+      function rand(){
+        return Math.round(Math.random()  * 1000)
+      }
+
+      one.onload = function (){ two.style.opacity = 0; }
+      two.onload = function (){ two.style.opacity = 1; }
+
+      setTimeout(load_two,time)
+
+      document.querySelector("body").ondblclick = function () { 
+        if (!(document.fullscreenElement || 
+              document.mozFullScreenElement || 
+              document.msFullscreenElement || 
+              document.webkitFullscreenElement)) { 
+          if (this.requestFullscreen) { 
+            this.requestFullscreen() 
+          } else { 
+            if (this.mozRequestFullScreen) { 
+              this.mozRequestFullScreen() 
+            } else { 
+              if (this.webkitRequestFullscreen) { 
+                this.webkitRequestFullscreen() 
+              } else { 
+                if (this.msRequestFullscreen) { 
+                  this.msRequestFullscreen() 
+                } 
+              } 
+            } 
+          } 
+        } else { 
+          if (document.exitFullscreen) { 
+            document.exitFullscreen() 
+          } else { 
+            if (document.mozCancelFullScreen) { 
+              document.mozCancelFullScreen() 
+            } else {
+              if (document.webkitExitFullscreen) { 
+                document.webkitExitFullscreen() 
+              } else { 
+                if (document.msExitFullscreen) { 
+                  document.msExitFullscreen() 
+                } 
+              } 
+            } 
+          } 
+        } 
+      }
+    </script>
+</body>
+</html>
