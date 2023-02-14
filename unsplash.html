@@ -23,24 +23,24 @@
 </head>
 <body>
     <div>
-        <img id=one src='https://source.unsplash.com/3840x2160'>
+        <img id=one src='https://source.unsplash.com/random/?nature'>
         <img id=two src=''>
     </div>
     <script>
-      time = 50*60*1000;
+      time = 50*1000;
 
       one = document.getElementById("one");
       two = document.getElementById("two");
 
       function load_one(){
         console.log('one');
-        one.src = 'https://source.unsplash.com/random/3840x2160?r='+ rand();
+        one.src = 'https://source.unsplash.com/random/3840x2160/?nature='+ rand();
         setTimeout(load_two,time)
       }
 
       function load_two(){
         console.log('two');
-        two.src = 'https://source.unsplash.com/random/3840x2160?r='+ rand();
+        two.src = 'https://source.unsplash.com/random/3840x2160/?nature='+ rand();
         setTimeout(load_one,time)
       }
 
